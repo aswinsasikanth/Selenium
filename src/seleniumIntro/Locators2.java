@@ -11,20 +11,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.Assertion;
 
-import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjection.Split;
-
 public class Locators2 {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		
+
 		Locators2 login = new Locators2();
 		String password = login.getPassword(driver, wait);
-		
+		login.loginPage(driver, password);
+	}
+
+	public void loginPage(WebDriver driver, String password) throws InterruptedException {
 		driver.get("https://rahulshettyacademy.com/locatorspractice");
-		
 
 		String name = "aswin";
 		driver.findElement(By.id("inputUsername")).sendKeys(name);
@@ -39,7 +39,7 @@ public class Locators2 {
 		Assert.assertEquals(driver.findElement(By.cssSelector("div[class='login-container'] h2")).getText(),
 				"Hello " + name + ",");
 
-		driver.findElement(By.cssSelector(".logout-btn")).click();
+//		driver.findElement(By.cssSelector(".logout-btn")).click();
 
 	}
 
@@ -49,8 +49,8 @@ public class Locators2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".reset-pwd-btn"))).click();
 		Thread.sleep(2000);
 		String passwordMsg = driver.findElement(By.cssSelector("form p")).getText();
-		String[] passArray = passwordMsg.split("'");
-		String password = passArray[1].split("'")[0];
+		String passArray = passwordMsg.split("'")[1];
+		String password = passArray.split("'")[0];
 		System.out.println(password);
 		return password;
 	}
