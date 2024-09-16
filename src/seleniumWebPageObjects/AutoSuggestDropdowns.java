@@ -15,8 +15,8 @@ public class AutoSuggestDropdowns {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(5));
 		driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(5));
 
 		driver.findElement(By.id("autosuggest")).sendKeys("ind");
 
