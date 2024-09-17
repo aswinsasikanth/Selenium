@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 
 
@@ -22,8 +23,9 @@ public class DropdownWithUpdates {
 			driver.findElement(By.id("hrefIncAdt")).click();
 		}
 		
-		System.out.println(driver.findElement(By.id("divpaxinfo")).getText());
+//		System.out.println(driver.findElement(By.id("divpaxinfo")).getText());
 		
+		Assert.assertEquals(driver.findElement(By.id("divpaxinfo")).getText(), "5 Adult");  //Validation Step
 		driver.findElement(By.id("btnclosepaxoption")).click();
 
 	}
