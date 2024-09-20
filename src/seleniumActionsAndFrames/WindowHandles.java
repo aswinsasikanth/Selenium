@@ -24,8 +24,7 @@ public class WindowHandles {
 		
 		String data = driver.findElement(By.cssSelector(".im-para.red")).getText();
 		System.out.println(data);
-		String splitByAt = data.split("@")[1];
-		String password = splitByAt.split("\\.")[0].trim();
+		String password = data.split("@")[1].trim().split("\\.")[0];
 		
 		driver.switchTo().window(parentID);
 		driver.findElement(By.cssSelector("#username")).sendKeys(password);
