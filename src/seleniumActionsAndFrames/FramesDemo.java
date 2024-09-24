@@ -31,6 +31,7 @@ public class FramesDemo {
 		//Return to window from frame
 		driver.switchTo().defaultContent();
 		
+
 		//Alternative way to switch frames
 		//Get number of frames
 		List<WebElement> count = driver.findElements(By.tagName("iframe"));
