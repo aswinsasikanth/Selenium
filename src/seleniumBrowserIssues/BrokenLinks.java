@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class BrokenLinks {
 
@@ -23,6 +24,7 @@ public class BrokenLinks {
 		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 
 		List<WebElement> links = driver.findElements(By.xpath("//li[@class='gf-li']//a"));
+		SoftAssert softAssert = new SoftAssert();
 
 		for (int i = 0; i < links.size(); i++) {
 
@@ -39,13 +41,12 @@ public class BrokenLinks {
 			conn.connect();
 			// Fetch Response code
 			int respCode = conn.getResponseCode();
-
-			if (respCode > 400) {
-				System.out.println(
-						"The link with Text " + links.get(i).getText() + " is broken with response code " + respCode);
-				Assert.assertTrue(false);
-			}
+			System.out.println(respCode);
+			softAssert.assertTrue(respCode < 402,
+					"The link with Text " + links.get(i).getText() + " is broken with response code " 
+							+ respCode);
 		}
+		softAssert.assertAll();
 		driver.close();
 	}
 }
